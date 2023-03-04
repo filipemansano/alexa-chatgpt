@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+      "noImplicitAny": true,
+      "esModuleInterop": true,
+      "preserveConstEnums": true,
+      "target": "es2020",
+      "module": "NodeNext",
+      "moduleResolution": "NodeNext",
+      "outDir": "./built",
+      "sourceMap": false
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "**/*.spec.ts"]
+}

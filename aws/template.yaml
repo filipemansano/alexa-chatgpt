@@ -1,0 +1,50 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: >-
+  alexa-gpt
+
+Transform:
+- AWS::Serverless-2016-10-31
+
+Resources:
+
+  NodeServelessDependenciesLayers:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: nodejs-alexagpt
+      Description: node modules with all dependencies
+      ContentUri: "./layers"
+      CompatibleRuntimes:
+        - nodejs18.x
+      LicenseInfo: 'MIT'
+      RetentionPolicy: Retain
+    Metadata:
+      BuildMethod: nodejs18.x
+
+  ChatGPT:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: chatgpt
+      CodeUri: "../built"
+      Handler: app.lambdaHandler
+      Runtime: nodejs18.x
+      Layers:
+       - !Ref NodeServelessDependenciesLayers
+      Architectures:
+        - x86_64
+      MemorySize: 128
+      Timeout: 100
+      Description: Alexa with Chat GPT
+      Environment:
+        Variables:
+          OPENAI_API_KEY: "{{resolve:secretsmanager:openai/chatgpt:SecretString:token}}"
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /
+            Method: POST
+
+Outputs:
+  WebEndpoint:
+    Description: "API Gateway endpoint URL for Prod stage"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
