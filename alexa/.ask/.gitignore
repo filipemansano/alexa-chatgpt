@@ -1,0 +1,7 @@
+# ignore everything in current directory
+/*
+
+# !pattern now negates the "ignore everything" and keeps 'pattern'
+
+# keep .gitignore
+!.gitignore 

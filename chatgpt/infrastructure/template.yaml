@@ -7,7 +7,7 @@ Transform:
 
 Resources:
 
-  NodeServelessDependenciesLayers:
+  ChatGPTDependenciesLayers:
     Type: AWS::Serverless::LayerVersion
     Properties:
       LayerName: nodejs-alexagpt
@@ -20,15 +20,43 @@ Resources:
     Metadata:
       BuildMethod: nodejs18.x
 
+  RestApiChatGPT:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+      Name: chatgpt-api
+      Auth:
+        ApiKeyRequired: true
+
+  ApiKey:
+    Type: AWS::ApiGateway::ApiKey
+    Properties:
+      Name: ChatGPTApiKey
+      Enabled: true
+
+  UsagePlan:
+    Type: AWS::ApiGateway::UsagePlan
+    Properties: 
+      ApiStages: 
+        - ApiId: !Ref RestApiChatGPT
+          Stage: !Ref RestApiChatGPTProdStage
+
+  UsagePlanKey:
+    Type: AWS::ApiGateway::UsagePlanKey
+    Properties:
+      KeyId: !Ref ApiKey
+      KeyType: API_KEY
+      UsagePlanId: !Ref UsagePlan
+
   ChatGPT:
     Type: AWS::Serverless::Function
     Properties:
       FunctionName: chatgpt
-      CodeUri: "../built"
+      CodeUri: "../build"
       Handler: app.lambdaHandler
       Runtime: nodejs18.x
       Layers:
-       - !Ref NodeServelessDependenciesLayers
+       - !Ref ChatGPTDependenciesLayers
       Architectures:
         - x86_64
       MemorySize: 128
@@ -41,10 +69,14 @@ Resources:
         Api:
           Type: Api
           Properties:
+            RestApiId: !Ref RestApiChatGPT
             Path: /
             Method: POST
+            Auth: 
+              ApiKeyRequired: true
+
 
 Outputs:
-  WebEndpoint:
+  ChatGPTEndpoint:
     Description: "API Gateway endpoint URL for Prod stage"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
+    Value: !Sub "https://${RestApiChatGPT}.execute-api.${AWS::Region}.amazonaws.com/Prod"

@@ -1,0 +1,30 @@
+{
+  "askcliResourcesVersion": "2020-03-31",
+  "profiles": {
+    "default": {
+      "skillMetadata": {
+        "src": "./skill-package"
+      },
+      "code": {
+        "default": {
+          "src": "./lambda"
+        }
+      },
+      "skillInfrastructure": {
+        "userConfig": {
+          "runtime": "nodejs18.x",
+          "handler": "index.handler",
+          "templatePath": "./infrastructure/cfn-deployer/skill-stack.yaml",
+          "awsRegion": "us-east-1",
+          "cfn": {
+            "parameters": {
+              "ChatGPTDomain": "5xzofj7uii.execute-api.us-east-1.amazonaws.com",
+              "ChatGPTPath": "/Prod/"
+            }
+          }
+        },
+        "type": "@ask-cli/cfn-deployer"
+      }
+    }
+  }
+}

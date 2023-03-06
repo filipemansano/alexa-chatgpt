@@ -1,0 +1,30 @@
+{
+  "name": "alexa-chatgpt",
+  "version": "1.2.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rimraf build",
+    "compile": "tsc --build tsconfig.json",
+    "build-final": "cpy package.json build && cd build/ && npm install --ommit=dev",
+    "build": "npm run clean && npm run compile && npm run build-final",
+    "test": "echo \"No test specified yet\" && exit 0"
+  },
+  "author": "Filipe Mansano",
+  "license": "Apache License",
+  "dependencies": {
+    "ask-sdk-core": "^2.12.1",
+    "ask-sdk-model": "^1.55.0",
+    "i18next": "^22.4.10",
+    "i18next-sprintf-postprocessor": "^0.2.2",
+    "aws-sdk": "^2.1328.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.14.6",
+    "@types/i18next-sprintf-postprocessor": "^0.2.0",
+    "cpy-cli": "^4.2.0",
+    "typescript": "^4.9.5",
+    "ts-node": "^10.9.1",
+    "rimraf": "^4.3.0"
+  }
+}

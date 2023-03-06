@@ -1,0 +1,34 @@
+{
+  "manifest": {
+    "publishingInformation": {
+      "locales": {
+        "pt-BR": {
+          "summary": "Alexa Skill to integrate with ChatGPT",
+          "examplePhrases": [
+            "Alexa, abrir chat g. p. t."
+          ],
+          "name": "CloudFormation - Alexa GPT",
+          "description": "Alexa Skill to integrate with ChatGPT"
+        },
+        "en-US": {
+          "summary": "Alexa Skill to integrate with ChatGPT",
+          "examplePhrases": [
+            "Alexa, open chat g. p. t."
+          ],
+          "name": "CloudFormation - Alexa GPT",
+          "description": "Alexa Skill to integrate with ChatGPT"
+        }
+      },
+      "isAvailableWorldwide": true,
+      "distributionCountries": []
+    },
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "uri": "arn:aws:lambda:us-east-1:786557629847:function:alexa-skill"
+        }
+      }
+    },
+    "manifestVersion": "1.0"
+  }
+}

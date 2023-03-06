@@ -7,6 +7,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "tsc --build tsconfig.json",
+    "build-final": "cp package.json build",
+    "generate:layers": "cp package.json ./infrastructure/layer/nodejs && npm install --prefix=./infrastructure/layer/nodejs --omit=dev",
+    "build": "npm run compile && npm run build-final",
     "watch": "tsc --watch"
   },
   "author": "",

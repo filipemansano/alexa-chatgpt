@@ -1,0 +1,56 @@
+{
+    "interactionModel": {
+      "languageModel": {
+        "invocationName": "chat g. p. t.",
+        "intents": [
+          {
+            "name": "AMAZON.CancelIntent",
+            "samples": []
+          },
+          {
+            "name": "AMAZON.HelpIntent",
+            "samples": []
+          },
+          {
+            "name": "AMAZON.StopIntent",
+            "samples": []
+          },
+          {
+            "name": "AMAZON.NavigateHomeIntent",
+            "samples": []
+          },
+          {
+            "name": "QuestionIntent",
+            "slots": [
+              {
+                "name": "question",
+                "type": "AMAZON.SearchQuery"
+              }
+            ],
+            "samples": [
+              "perguntar {question}",
+              "pergunte {question}"
+            ]
+          },
+          {
+            "name": "ConversationIntent",
+            "slots": [
+              {
+                "name": "sentence",
+                "type": "AMAZON.SearchQuery"
+              }
+            ],
+            "samples": [
+              "Quero conversar",
+              "Iniciar conversa",
+              "Vamos conversar",
+              "Conversar",
+              " {sentence}"
+            ]
+          }
+        ],
+        "types": []
+      }
+    },
+    "version": "11"
+  }
