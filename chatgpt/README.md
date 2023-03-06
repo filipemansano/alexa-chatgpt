@@ -52,7 +52,7 @@ _atualize o secret criado anteriormente adicionando essa chave também com a key
 
 Para utilizar a API, faça uma requisição POST para a URL da API Gateway, passando o corpo da mensagem em JSON:
 
-```json
+```
 POST https://<api-gateway-endpoint>/Prod
 
 Header: {
@@ -76,7 +76,7 @@ O corpo da resposta terá o ID da mensagem e o texto da mensagem de resposta ger
 }
 ```
 
-Arquitetura
+## Arquitetura
 A arquitetura da aplicação consiste em:
 
 * **API Gateway**: fornece um ponto de entrada para a API.
@@ -84,5 +84,5 @@ A arquitetura da aplicação consiste em:
 * **OpenAI API**: modelo de linguagem Chat GPT que gera respostas com base nas entradas fornecidas.
 * **AWS Secrets Manager**: armazena a chave de acesso para as credenciais da API do OpenAI.
 
-Licença
+## Licença
 Este projeto está licenciado sob a Licença MIT. Consulte o arquivo LICENSE para obter mais informações.
