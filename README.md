@@ -1,11 +1,11 @@
 # Alexa GPT
 ![diagram](./doc/diagram.png)
 
-This project was developed using NodeJS and AWS serverless services such as Lambda Functions, API Gateway, and more.
+Este projeto foi desenvolvido em NodeJS e utilizando serviços serveless da AWS como lambda functions, api gateway e etc...
 
-The application allows you to use Alexa to interact with the ChatGPT API, an advanced natural language model that can be trained to perform a variety of conversational tasks. With this integration, it is possible to create personalized and interactive conversational experiences using your voice on any device compatible with Alexa.
+A aplicação permite que você utilize a Alexa para interagir com a API do ChatGPT, um modelo de linguagem natural avançado que pode ser treinado para realizar uma variedade de tarefas de conversação. Com essa integração, é possível criar experiências de conversação personalizadas e interativas usando a sua voz, em qualquer dispositivo compatível com a Alexa.
 
-This repository contains the application source code, as well as detailed instructions for installation and environment configuration. Additionally, there are also usage examples and complete API documentation available.
+Este repositório contém o código fonte da aplicação, bem como instruções detalhadas para a instalação e configuração do ambiente. Além disso, há também exemplos de uso e documentação completa da API disponível.
 
 
 ## Usage examples
