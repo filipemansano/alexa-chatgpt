@@ -1,13 +1,14 @@
+@@ -0.0 +1.68 @@
 # Alexa Custom Skill
-Este projeto demonstra como criar uma habilidade personalizada da alexa para se comunicar com a Api do ChatGPT criada anteriormente.
+This project demonstrates how to create a custom alexa skill to communicate with the previously created ChatGPT API.
 
-## Pré-requisitos
+## Prerequisites
 
 * ASK CLI
-  * Uma conta de [desenvolvedor da Amazon](https://developer.amazon.com/). A inscrição é gratuita.
-  * Node.js e npm, que vem com o Node.js. O ASK CLI requer Node.js versão 8.3 ou superior, mas recomendamos que você use a versão atual ou a versão LTS ativa do Node.js. Para instalar ou atualizar sua versão do Node.js, consulte a página de downloads do Node.js. Para verificar sua versão do Node.js, abra um prompt de comando e digite `node --version`.
+   * An [Amazon developer](https://developer.amazon.com/) account. Registration is free.
+   * Node.js and npm, which come with Node.js. The ASK CLI requires Node.js version 8.3 or higher, but we recommend that you use the current or active LTS version of Node.js. To install or update your version of Node.js, see the Node.js downloads page. To check your Node.js version, open a command prompt and type `node --version`.
 
-# Instalação
+# Installation
 
 **1. Install CLI**
 
@@ -16,52 +17,52 @@ $ npm install -g ask-cli
 ```
 
 
-**2. Configure CLI profile**
+**two. Configure CLI profile**
 
-Antes de começar a usar o ASK CLI, configure suas credenciais ASK (e AWS):
+Before you start using the ASK CLI, configure your ASK (and AWS) credentials:
 ```
 $ ask configure
 ```
 
-Você será solicitado a fazer login na sua conta de desenvolvedor da Amazon. Se você optar por ter sua habilidade hospedada pela AWS, também terá a opção de vincular sua conta da AWS.
+You will be asked to log in to your Amazon developer account. If you choose to have your skill hosted by AWS, you also have the option to link your AWS account.
 
 <p align="center">
-  <img align="center" src="https://ask-cli-static-content.s3-us-west-2.amazonaws.com/document-assets/v2-ask-cli-configure.gif" height="520" />
+   <img align="center" src="https://ask-cli-static-content.s3-us-west-2.amazonaws.com/document-assets/v2-ask-cli-configure.gif" height= "520" />
 </p>
 
-Aqui está uma visão geral de cada um dos arquivos e pastas criados por padrão:
+Here is an overview of each of the files and folders created by default:
 
- File/Folder       | Description  |
-| :--------------   | :----------- |
-| skill-package/    | Recursos de habilidades utilizados pela plataforma ASK, como manifesto de habilidades, modelos de interação e ativos |
-| lambda/	          | Contém o código-fonte para sua habilidade que utiliza o ASK SDK |
-| infrastructure/   | Contém suas definições do CloudFormation para implantar sua habilidade na AWS |
-| ask-resources config     | Configuração para seu projeto de habilidade Alexa |
+  File/Folder | Description |
+| :------------- | :----------- |
+| skill-package/ | Skill Resources Used by the ASK Platform, such as Skill Manifest, Interaction Models, and Assets |
+| lambda/ | Contains source code for your skill that uses the ASK SDK |
+| infrastructure/ | Contains your CloudFormation definitions for deploying your skill to AWS |
+| ask-resources config | Setup for Your Alexa Skill Project |
 
 ## Deploy Alexa skill
 
-Para que o Alexa se comunique com seu código de habilidade, ele precisará ser implantado e hospedado na nuvem usando este comando.
+In order for Alexa to communicate with your skill code, it will need to be deployed and hosted in the cloud using this command.
 
-_antes de tudo altere o arquivo `aks-resources.json` na linha 21 para o endereço do seu API Gateway_
+_first of all change the `aks-resources.json` file on line 21 to the address of your API Gateway_
 
 ```
 $ ask deploy
 ```
 
-O comando deploy executa as seguintes etapas:
+The deploy command performs the following steps:
 
-1. `skill-package/` os recursos serão compactados e enviados para a plataforma ASK via SMAPI's [Skill Package Service](https://developer.amazon.com/docs/smapi/skill-package-api-reference.html).
-2. `lambda/` os arquivos de origem serão criados e compactados para implantação na AWS.
-3. `infrastructure/` as definições serão usadas para provisionar recursos na AWS. O arquivo zip `lambda/` da etapa anterior será implantado na função provisionada do AWS Lambda. O gif abaixo mostra a implantação usando `@ask-cli/cfn-deployer`
+1. `skill-package/` resources will be packaged and uploaded to the ASK platform via SMAPI's [Skill Package Service](https://developer.amazon.com/docs/smapi/skill-package-api-reference.html) .
+2. `lambda/` source files will be created and packaged for deployment to AWS.
+3. `infrastructure/` definitions will be used to provision resources in AWS. The `lambda/` zip file from the previous step will be deployed to the provisioned AWS Lambda function. The gif below shows deployment using `@ask-cli/cfn-deployer`
 
 <p align="center">
-  <img align="center" src="https://ask-cli-static-content.s3-us-west-2.amazonaws.com/document-assets/v2-ask-cli-deploy.gif" height="520" />
+   <img align="center" src="https://ask-cli-static-content.s3-us-west-2.amazonaws.com/document-assets/v2-ask-cli-deploy.gif" height= "520" />
 </p>
 
 
-**5. Interagir com a aplicação**
+**5. Interact with the app**
 
-Para testar enquanto desenvolve sua habilidade localmente, ou mostrar rapidamente suas ideias de habilidade, ou até mesmo construir testes de ponta a ponta, você pode usar o comando de diálogo da CLI.
+To test while building your skill locally, or quickly show your skill ideas, or even build end-to-end tests, you can use the CLI command dialog.
 
 ```
 $ ask dialog
