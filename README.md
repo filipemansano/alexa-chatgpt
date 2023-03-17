@@ -7,6 +7,9 @@ A aplicação permite que você utilize a Alexa para interagir com a API do Chat
 
 Este repositório contém o código fonte da aplicação, bem como instruções detalhadas para a instalação e configuração do ambiente. Além disso, há também exemplos de uso e documentação completa da API disponível.
 
+## Nota
+
+> Atualmente o time da Alexa rejeito o aplicativo por não poussir filtro nas respostas enviada pelo ChatGPT, em breve lançarei um update aplicando alguns filtro para não responder sobre conteudo explicitos, adultos e etc. para ficar dentro das politicas da alexa
 
 ## Usage examples
 
