@@ -76,7 +76,7 @@ O corpo da resposta terá o ID da mensagem e o texto da mensagem de resposta ger
 }
 ```
 
-# Analise de tóxicidade da resposta
+# Análise de toxicidade da resposta
 
 A função `analyzeText` usa a API de análise de comentários do Google para determinar a probabilidade de um texto ser considerado tóxico. A função recebe um texto como entrada e retorna um valor numérico entre 0 e 1, que representa a pontuação de toxicidade do texto.
 
