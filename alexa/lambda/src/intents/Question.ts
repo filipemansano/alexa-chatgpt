@@ -23,8 +23,12 @@ export const Question: RequestHandler = {
 
         sessionAttributes.parentMessageId = response.id;
 
+        const responseText = (response.toxicity === null || response.toxicity > 0.6)
+            ? i18n.t(Strings.FILTERED_ANSWER) 
+            : response.text;
+
         return handlerInput.responseBuilder
-            .speak(response.text)
+            .speak(responseText)
             .reprompt(speechText)
             .getResponse();
     },

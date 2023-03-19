@@ -3,9 +3,14 @@ import * as https from 'https';
 export const ChatGPT = {
     async sendMessage(message: string, parentMessageId: string | null): Promise<{
         text: string
-        id: string
+        id: string,
+        toxicity: number|null
     }> {
-        const data = new TextEncoder().encode(JSON.stringify({ message, parentMessageId }));
+        const data = new TextEncoder().encode(JSON.stringify({ 
+            message: message, 
+            parentMessageId: parentMessageId,
+            measureToxicity: true
+         }));
     
         const options: https.RequestOptions = {
             hostname: process.env.CHAT_GPT_DOMAIN,

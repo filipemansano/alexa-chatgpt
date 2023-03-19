@@ -48,8 +48,12 @@ export const Conversation: RequestHandler = {
 
         const speechMoreText = i18n.t(Strings.CONVERSATION_SPEAK_MORE_MSG);
 
+        const responseText = (response.toxicity === null || response.toxicity > 0.6)
+            ? i18n.t(Strings.FILTERED_ANSWER) 
+            : response.text;
+
         return handlerInput.responseBuilder
-            .speak(response.text)
+            .speak(responseText)
             .reprompt(speechMoreText)
             .getResponse();
     },
