@@ -65,6 +65,7 @@ Resources:
       Environment:
         Variables:
           OPENAI_API_KEY: "{{resolve:secretsmanager:openai/chatgpt:SecretString:token}}"
+          GOOGLE_API_KEY: "{{resolve:secretsmanager:openai/chatgpt:SecretString:googleApiKey}}"
       Events:
         Api:
           Type: Api

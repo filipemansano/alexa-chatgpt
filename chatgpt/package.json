@@ -8,19 +8,22 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "tsc --build tsconfig.json",
     "build-final": "cp package.json build",
-    "generate:layers": "cp package.json ./infrastructure/layer/nodejs && npm install --prefix=./infrastructure/layer/nodejs --omit=dev",
+    "generate:layers": "cp package.json ./infrastructure/layers/nodejs && npm install --prefix=./infrastructure/layers/nodejs --omit=dev",
     "build": "npm run compile && npm run build-final",
+    "deploy": "cd infrastructure && sam deploy",
     "watch": "tsc --watch"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "chatgpt": "^5.0.6",
+    "googleapis": "^113.0.0",
     "openai": "^3.2.1"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.111",
     "@types/node": "^18.14.6",
+    "dotenv": "^16.0.3",
     "typescript": "^4.9.5"
   }
 }

@@ -76,6 +76,36 @@ O corpo da resposta terá o ID da mensagem e o texto da mensagem de resposta ger
 }
 ```
 
+# Analise de tóxicidade da resposta
+
+A função `analyzeText` usa a API de análise de comentários do Google para determinar a probabilidade de um texto ser considerado tóxico. A função recebe um texto como entrada e retorna um valor numérico entre 0 e 1, que representa a pontuação de toxicidade do texto.
+
+Para usar a API do Comment Analyzer, a função faz uma chamada para `google.discoverAPI` para criar um cliente que possa acessar a API. Em seguida, a função constrói uma solicitação de análise de comentários com base no texto de entrada e solicita especificamente uma pontuação de toxicidade. A solicitação é enviada para a API do Comment Analyzer por meio do método `client.comments.analyze`.
+
+A função espera a resposta da API e extrai a pontuação de toxicidade do resultado. O resultado é retornado como um número entre 0 e 1, que representa a probabilidade de o texto ser considerado tóxico.
+
+A função é tipada com as interfaces `AnalyzeResponse` e `AnalyzeComments`, que definem os tipos de parâmetros e retorno esperados pelo método `client.comments.analyze`. Essas interfaces ajudam a garantir a segurança e a precisão do tipo em tempo de compilação.
+
+Para acessar a API de análise de comentários do Google (também conhecida como "Comment Analyzer"), você precisa seguir as seguintes etapas:
+
+> Antes de tudo você precisa solicitar acesso a essa API preenchendo um formulário no site da Perspective: [acesse o formulário clicando aqui](https://docs.google.com/forms/d/e/1FAIpQLSdhBBnVVVbXSElby-jhNnEj-Zwpt5toQSCFsJerGfpXW66CuQ/viewform), para mais info [clique aqui](https://developers.perspectiveapi.com/s/docs-get-started?language=en_US)
+
+1. Criar uma conta no Google Cloud Platform: Acesse https://console.cloud.google.com e crie uma conta. Se você já tem uma conta, faça login.
+
+2. Criar um projeto: Na página inicial do Google Cloud Console, clique no botão "Select a Project" no topo da página e selecione "New Project". Dê um nome ao projeto e clique em "Create".
+
+3. Ativar a API do Comment Analyzer: No painel de controle do projeto, navegue até "APIs & Services" > "Dashboard". Clique em "+ ENABLE APIS AND SERVICES" e procure por "Comment Analyzer API". Selecione a API e clique em "Enable".
+
+4. Criar credenciais: Ainda na página "APIs & Services", clique em "Create credentials". Selecione "API key" e copie a chave gerada. Você usará essa chave em sua função para autenticar a solicitação à API.
+
+5. Configurar as permissões da API: Na página de detalhes da API Comment Analyzer, clique em "CREATE CREDENTIALS" e selecione "Service account key". Siga as etapas para criar uma nova chave de conta de serviço. Você usará essa chave em sua função para autenticar a solicitação à API.
+
+6. Usar a API em sua função: Com as credenciais de API e permissões configuradas, você pode usar a API do Comment Analyzer em sua função. Certifique-se de que a chave da API esteja incluída em suas solicitações e que as permissões de acesso à API estejam definidas corretamente.
+
+7. Atualize seu Secret Manager e adicione a key `googleApiKey` com o valor a chave da sua API no google
+
+Observação: O uso da API do Comment Analyzer do Google pode estar sujeito a cobranças. Consulte a documentação da API para obter mais informações sobre as políticas de preços e limites de uso.
+
 ## Arquitetura
 A arquitetura da aplicação consiste em:
 
