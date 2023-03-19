@@ -26,7 +26,7 @@ export const Conversation: RequestHandler = {
 
 
         const attributes = handlerInput.attributesManager.getRequestAttributes() as RequestAttributes;
-        const userInput = attributes.slots.sentence.value;
+        let userInput = attributes.slots.sentence.value;
 
         const speechErrorText = i18n.t(Strings.CONVERSATION_ERROR_MSG);
         const speechQuestionText = i18n.t(Strings.CONVERSATION_QUESTION_MSG);
@@ -41,22 +41,37 @@ export const Conversation: RequestHandler = {
         const speechMoreText = i18n.t(Strings.CONVERSATION_SPEAK_MORE_MSG);
         let responseText = null;
 
+        console.log(`user input: ${userInput}`);
+
         try{
+            if(!sessionAttributes.parentMessageId){
+                userInput = `${i18n.t(Strings.DISCLAIMER)}\n\n ${userInput}`
+            }
+
             const response = await ChatGPT.sendMessage(
                 userInput,
-                sessionAttributes.parentMessageId
+                sessionAttributes.parentMessageId,
+                false
             );
-    
-            sessionAttributes.parentMessageId = response.id;
-    
-            responseText = (response.toxicity === null || response.toxicity > 0.6)
-                ? i18n.t(Strings.FILTERED_ANSWER) 
-                : response.text;
 
+            if(!response.text){
+                responseText = i18n.t(Strings.CHATGPT_GENERAL_ERROR);
+                console.log(response);
+            }else{
+                sessionAttributes.parentMessageId = response.id;
+    
+                /*responseText = (response.toxicity === null || response.toxicity > 0.6)
+                    ? i18n.t(Strings.FILTERED_ANSWER) 
+                    : response.text;*/
+                
+                responseText = response.text;
+            }
         }catch(e){
             responseText = i18n.t(Strings.CHATGPT_GENERAL_ERROR);
-            console.error(e);
+            console.log(e);
         }
+
+        console.log(`alexa response: ${responseText}`);
 
         return handlerInput.responseBuilder
             .speak(responseText)
