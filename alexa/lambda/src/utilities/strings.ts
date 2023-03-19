@@ -27,7 +27,7 @@ export const strings = {
             ERROR_MSG: 'Desculpe, não entendi o que você quis dizer. Por favor, tente novamente ou diga ajuda.',
             ERROR_UNEXPECTED_MSG: 'Desculpe, não entendi o que você quis dizer. Por favor, tente novamente ou diga ajuda.',
             QUESTION_MSG: 'O que mais você gostaria de fazer?',
-            FILTERED_ANSWER: 'Infelizmente a resposta gerada pelo Chat G. P. T. fere as políticas da Alexa, por esse motivo a resposta foi filtrada',
+            FILTERED_ANSWER: 'Infelizmente a resposta gerada pelo Chat G. P. T. viola as políticas da Alexa, por esse motivo a resposta foi filtrada',
 
             CONVERSATION_MSG: 'Vamos conversar! O que você gostaria de falar?',
             CONVERSATION_EMPTY_MSG: 'Por favor, diga alguma coisa.',
