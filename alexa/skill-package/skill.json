@@ -7,7 +7,7 @@
           "examplePhrases": [
             "Alexa, abrir chat g. p. t."
           ],
-          "name": "CloudFormation - Alexa GPT",
+          "name": "Chat GPT",
           "description": "Alexa Skill to integrate with ChatGPT"
         },
         "en-US": {
@@ -15,7 +15,7 @@
           "examplePhrases": [
             "Alexa, open chat g. p. t."
           ],
-          "name": "CloudFormation - Alexa GPT",
+          "name": "Chat GPT",
           "description": "Alexa Skill to integrate with ChatGPT"
         }
       },

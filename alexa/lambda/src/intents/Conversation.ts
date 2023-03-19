@@ -38,19 +38,25 @@ export const Conversation: RequestHandler = {
                 .getResponse();
         }
 
-
-        const response = await ChatGPT.sendMessage(
-            userInput,
-            sessionAttributes.parentMessageId
-        );
-
-        sessionAttributes.parentMessageId = response.id;
-
         const speechMoreText = i18n.t(Strings.CONVERSATION_SPEAK_MORE_MSG);
+        let responseText = null;
 
-        const responseText = (response.toxicity === null || response.toxicity > 0.6)
-            ? i18n.t(Strings.FILTERED_ANSWER) 
-            : response.text;
+        try{
+            const response = await ChatGPT.sendMessage(
+                userInput,
+                sessionAttributes.parentMessageId
+            );
+    
+            sessionAttributes.parentMessageId = response.id;
+    
+            responseText = (response.toxicity === null || response.toxicity > 0.6)
+                ? i18n.t(Strings.FILTERED_ANSWER) 
+                : response.text;
+
+        }catch(e){
+            responseText = i18n.t(Strings.CHATGPT_GENERAL_ERROR);
+            console.error(e);
+        }
 
         return handlerInput.responseBuilder
             .speak(responseText)

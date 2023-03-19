@@ -16,16 +16,24 @@ export const Question: RequestHandler = {
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
         const attributes = handlerInput.attributesManager.getRequestAttributes()  as RequestAttributes;;
 
-        const response = await ChatGPT.sendMessage(
-            attributes.slots.question.value, 
-            sessionAttributes.parentMessageId
-        );
+        let responseText = null;
 
-        sessionAttributes.parentMessageId = response.id;
+        try{
+            const response = await ChatGPT.sendMessage(
+                attributes.slots.question.value, 
+                sessionAttributes.parentMessageId
+            );
 
-        const responseText = (response.toxicity === null || response.toxicity > 0.6)
-            ? i18n.t(Strings.FILTERED_ANSWER) 
-            : response.text;
+            sessionAttributes.parentMessageId = response.id;
+    
+            responseText = (response.toxicity === null || response.toxicity > 0.6)
+                ? i18n.t(Strings.FILTERED_ANSWER) 
+                : response.text;
+
+        }catch(e){
+            responseText = i18n.t(Strings.CHATGPT_GENERAL_ERROR);
+            console.error(e);
+        }
 
         return handlerInput.responseBuilder
             .speak(responseText)
